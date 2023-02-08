@@ -2,6 +2,13 @@
 Second Rocket Lab Take Home Test
 
 
+# Service Design
+
+Making use of simply FastAPI features, combined with my existing influx helper lib, this service implements a very basic one file flow to and from the InfluxDB container. In most circumstances concince execution was favored over a more verbose object oriented approach, though the code can be broken into this approach trivially. This project makes no use of even the most basic security concerns, and will blindly accept valid data into the DB.
+
+Retreval of data is tightly coupled to InfluxDB approaches, and may be an area of easy improovement. As the instructions did not clearly state if the input format is to be respected to the output, minimal changes occur as data transits into and out of the service.
+
+
 # Execution Instructions
 
 1. Checkout git repo onto a server running a version of docker >= `20.10.23`.
