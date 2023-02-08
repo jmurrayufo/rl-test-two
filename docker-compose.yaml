@@ -1,0 +1,62 @@
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/server.Dockerfile
+    volumes:
+      - ./app:/app/app:ro
+    command: uvicorn app.main:app --reload --host 0.0.0.0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - influxdb
+
+  client:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/server.Dockerfile
+    volumes:
+      - ./client:/app:ro
+    profiles:
+      - donotstart
+
+  influxdb:
+    image: influxdb:1.8.10
+    volumes:
+      - ./client/influx_setup.sh:/influx_setup.sh:ro
+
+  # grafana:
+  #   image: grafana/grafana:8.5.15
+  #   restart: always
+  #   ports:
+  #     - "3001:3000"
+  #   depends_on:
+  #     - influxdb
+  #   profiles:
+  #     - donotstart
+
+  # mongo:
+  #   image: mongo:6.0.4
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #   volumes:
+  #     - mongo_db_data:/data/db
+  #   profiles:
+  #     - donotstart
+
+  # mongo-express:
+  #   image: mongo-express:1.0.0-alpha.4
+  #   restart: always
+  #   ports:
+  #     - "8082:8081"
+  #   depends_on:
+  #     - mongo
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: example
+  #     ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  #   profiles:
+  #     - donotstart
