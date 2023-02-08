@@ -10,8 +10,6 @@ from dateutil.parser import parse as dt_parse
 
 from .db.influx import InfluxDB, Measurement
 
-app = FastAPI()
-
 """
 3. The application should expose REST endpoints to:
 
@@ -31,6 +29,8 @@ a. SQL Database suggestions (not required): Postgres, SQLite, MySQL, MariaDB, et
 b. NoSQL Database suggestions (not required): MongoDB, InfluxDB, Prometheus, Cassandra, Redis,
 etc...
 """
+
+app = FastAPI()
 
 @app.post("/data", status_code = 201)
 async def publish_influx_data(request: Request, response: Response):
