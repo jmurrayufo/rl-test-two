@@ -11,7 +11,7 @@ Retreval of data is tightly coupled to InfluxDB approaches, and may be an area o
 
 # Execution Instructions
 
-1. Checkout git repo onto a server running a version of docker >= `20.10.23`.
+1. Checkout git repo onto a linux host running a version of docker >= `20.10.23`.
 1. Run `docker compose build` to pull relevent images and build local services.
 1. Run `docker compose up -d` to spinup server, guis, and databases.
 1. Run `docker compose exec influxdb bash /influx_setup.sh` to initalize influx DB for execution.
