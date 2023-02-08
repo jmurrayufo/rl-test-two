@@ -18,3 +18,8 @@ Second Rocket Lab Take Home Test
 1. For testing, first run `docker compose down` to assure clean state. Then run `docker compose run server pytest` to see results of pytest tests.
 
 Also of note, the service has not been setup to use any persistant volumes, out of respect for who's environemnt this ends up being run in. Data will not persist between runs unless you create a persistant volume for influxDB. If persistance is desired, you can create a mount into `/var/lib/influxdb` in the influx service container.
+
+
+# Contributions
+
+Kindly follow https://www.conventionalcommits.org/en/v1.0.0/ for commit messages.
