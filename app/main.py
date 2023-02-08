@@ -43,10 +43,13 @@ async def publish_influx_data(request: Request, response: Response):
     influx_measures = []
 
     for line in text.split("\n"):
+
         values = line.split(",")
+
         if len(values) != 4:
             response.status_code = status.HTTP_400_BAD_REQUEST
             return
+
         measurement,time,value,apid = line.split(",")
 
         try:
@@ -54,6 +57,7 @@ async def publish_influx_data(request: Request, response: Response):
             time = dt_parse(time)
             value = float(value)
             apid = int(apid)
+
         except:
             response.status_code = status.HTTP_400_BAD_REQUEST
             return
